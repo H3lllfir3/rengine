@@ -106,8 +106,8 @@ services:
       - nuclei_templates:/root/nuclei-templates
       - tool_config:/root/.config
       - static_volume:/usr/src/app/staticfiles/
-    ports:
-      - "8000:8000"
+    expose:
+      - 8000
     depends_on:
       - db
       - celery
@@ -121,8 +121,8 @@ services:
     restart: always
     image: nginx:alpine
     ports:
-      - 8082:8082/tcp
-      - 443:443/tcp
+      - 80:80
+      - 443:443
     depends_on:
       - web
       - db
